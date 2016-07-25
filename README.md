@@ -8,13 +8,13 @@ Author:   Yibing Xie
 Contact:  xybhust@gmail.com 
 
 ### Features
---------
-1. Support short selling
-2. Support multi-asset strategies
-3. Support stepwise adding or reducing positions
-4. Support user-defined strategies with friendly interface
-5. Support multiple benchmarking
-6. Performance visualization 
+-------
+  1. Support short selling
+  2. Support multi-asset strategies
+  3. Support stepwise adding or reducing positions
+  4. Support user-defined strategies with friendly interface
+  5. Support multiple benchmarking
+  6. Performance visualization 
 
 
 Assumptions
