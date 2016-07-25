@@ -1,4 +1,4 @@
-# stock-trading-backtester
+# Stock-trading backtester
 @Stock-trading backtester 
 
 Version:  Python 2.7 (Compatible with Python 3) 
@@ -79,14 +79,14 @@ and the figures will pop up automatically.
 
 To research a new strategy, simply create your own strategy class, which MUST 
 implemente the following two method
-    ```python
-    @staticmethod 
-    csv_processor(tickers)
-    ```
-    and
-    ```python
-    generate_signal()
-    ```
+```python
+@staticmethod 
+csv_processor(tickers)
+```
+and
+```python
+generate_signal()
+```
 
 The files 'buy and hold' and 'simple moving average cross' are two examples. 
 The return type of the user-defined methods should follow the patterns of the 
