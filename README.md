@@ -17,7 +17,7 @@ Features
 
 Assumptions
 -----------
-1. Each order is implemented with certainty.
+1. Each order is executed with certainty.
 2. The transaction price is the open price at the next period which follows 
    the period when the signal is released.
 3. Commision fee is charged only at opening positions at a rate of 0.0015.
