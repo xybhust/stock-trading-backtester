@@ -1,8 +1,8 @@
-## stock-trading-backtester
-@Stock-trading backtester
-Version:  Python 2.7 (Compatible with Python 3)
-Author:   Yibing Xie
-Contact:  xybhust@gmail.com
+# stock-trading-backtester
+@Stock-trading backtester \\
+Version:  Python 2.7 (Compatible with Python 3) \\
+Author:   Yibing Xie \\
+Contact:  xybhust@gmail.com \\
 
 ### Features
 --------
