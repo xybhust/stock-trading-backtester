@@ -212,10 +212,7 @@ class Performance(object):
         fig.subplots_adjust(hspace=0)
         fig.show()
 
-       # plt.savefig("(%s)/%s%s.jpg" % (string,mu[0],string), dpi = 300)  
-       # plt.close()     
         pprint.pprint(stats)
         
-        #return (mu, sigma, annual_return, RaR, downside, sharpe, sortino)
-
+       
     
