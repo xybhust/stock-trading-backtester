@@ -37,7 +37,7 @@ class OrderHandler(object):
         ------
         Transaction cost is calculated only when entering the market.
         """
-        transaction_rate = 0.00
+        transaction_rate = 0.0015
         transaction_cost = 0. # cumulative
         weights = signal[1]
         qtys = {}
