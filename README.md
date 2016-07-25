@@ -41,7 +41,7 @@ The data pipeline in the backtest follows three steps:
 
 Files
 -----
-The files in tick_data directory are the original raw data, which consists of
+The files in `tick_data` directory are the original raw data, which consists of
 transaction records at second level. You are supposed to output the new
 resampled file and put it into the resampled_data directory. However, If you 
 already have data at desired frequency (this is what resample means), say, you
