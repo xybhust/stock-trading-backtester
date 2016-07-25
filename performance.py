@@ -214,5 +214,3 @@ class Performance(object):
 
         pprint.pprint(stats)
         
-       
-    
