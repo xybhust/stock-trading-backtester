@@ -62,14 +62,14 @@ Instructions
 ------------
 First you need to define your own functions to preprocess the raw tick data,
 which should return the resampled csv file with datetime as index. And the 
-two MUST HAVE columns are `transaction` and `close` as mentioned above.
+two MUST-HAVE columns are `transaction` and `close` as mentioned above.
 
 `resample_tick_data.py` is just my own example. Name the new file after the 
-tick file, eg. `600030.SH.csv` and put it into the strategy/data directory. 
+tick file, eg. `600030.SH.csv` and put it into the `strategy/data` directory. 
 I didn't want to integrate this functionality into the Backtest class because 
 different tick files might have different time index, however, the DataHandler 
 class requires each file have exactly the same indices. Therefore, you need to
-doublecheck manuall to ensure the data feeding to the DataHandler class come 
+doublecheck manually to ensure the data feeding to the DataHandler class come 
 up to standard.
 
 With everything ready, run the `backtest.py` to conduct backtest. Just run it 
@@ -96,7 +96,7 @@ Important settings
 Don't forget to modify the absolute path in the DataHandler
 class as well as the strategy class.
 
-Also, the Performance class expects the periods, which is an int number 
+Also, the Performance class expects the periods as arguments, which is an int number 
 representing the number of intervals in one year. I assume:
   * 52 weeks in a year
   * 250 days in a year
