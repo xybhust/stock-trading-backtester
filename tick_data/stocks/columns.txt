@@ -1,0 +1,1 @@
+column_names = "time,price,quantity,amount,num,side,volume,turnover,ask_price,ask_qty,bid_price,bid_qty,ask_avg_price,bid_avg_price,total_ask_qty,total_bid_qty".split(",")
