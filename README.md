@@ -64,7 +64,7 @@ First you need to define your own functions to preprocess the raw tick data,
 which should return the resampled csv file with datetime as index. And the 
 two MUST HAVE columns are `transaction` and `close` as mentioned above.
 
-'resample_tick_data.py' is just my own example. Name the new file after the 
+`resample_tick_data.py` is just my own example. Name the new file after the 
 tick file, eg. `600030.SH.csv` and put it into the strategy/data directory. 
 I didn't want to integrate this functionality into the Backtest class because 
 different tick files might have different time index, however, the DataHandler 
