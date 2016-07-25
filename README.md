@@ -49,14 +49,14 @@ resampled file and put it into the resampled_data directory. However, If you
 already have data at desired frequency (this is what resample means), say, you
 collect daily data from Yahoo finance api, then you can skip the first step 
 and put them straight into the resampled_data directory. Keep in mind that 
-'transaction' and 'close' are two required columns in order to make the 
+`transaction` and `close` are two required columns in order to make the 
 components running free of troubles.
 
 The files in resampled_data directory contains necessary market information,
 which will be read by the strategy class and the output file will be stored
-in the strategy/data directory.
+in the `strategy/data` directory.
 
-The files in strategy/data directory are files processed by a specific strategy,
+The files in `strategy/data` directory are files processed by a specific strategy,
 which will be read by the DataHandler class. 
 
 
@@ -88,7 +88,7 @@ and
 generate_signal()
 ```
 
-The files 'buy and hold' and 'simple moving average cross' are two examples. 
+The files `buy and hold` and `simple moving average cross` are two examples. 
 The return type of the user-defined methods should follow the patterns of the 
 examples. All you need to do is to copy and modified it.
 
@@ -100,11 +100,11 @@ class as well as the strategy class.
 
 Also, the Performance class expects the periods, which is an int number 
 representing the number of intervals in one year. We assume:
-52 weeks in a year
-250 days in a year
-250 * 4 hours in a year
-250 * 4 * 60 minutes in a year
-250 * 4 * 60 * 60 seconds in a year
+  * 52 weeks in a year
+  * 250 days in a year
+  * 250 * 4 hours in a year
+  * 250 * 4 * 60 minutes in a year
+  * 250 * 4 * 60 * 60 seconds in a year
 
 For example, if you are researching a 5-min strategy, then the periods should
 be 250 * 4 * 12.
