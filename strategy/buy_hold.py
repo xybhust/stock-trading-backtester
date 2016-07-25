@@ -79,7 +79,7 @@ class BuyHold(object):
         """            
         if self.status == 'EMPTY':
             num = len(self.data_handler.tickers)
-            signal = 'ENTER', dict((t, -1./num) for t in self.data_handler.tickers)
+            signal = 'ENTER', dict((t, 1./num) for t in self.data_handler.tickers)
             self.status = 'LONG'
             return signal
         else:
