@@ -107,8 +107,13 @@ representing the number of intervals in one year. We assume:
 For example, if you are researching a 5-min strategy, then the periods should
 be 250 * 4 * 12.
 
-
 If you follow my steps correctly, you are expected to see exactly the same
 graphs and results as I do.
+
+
+Sample graphs
+-------------
+![Sample](https://github.com/xybhust/stock-trading-backtester/images/figure_1.png)
+
 
 Advice is greatly appreciated. 
