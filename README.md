@@ -113,7 +113,7 @@ graphs and results as I do.
 
 Sample graphs
 -------------
-![Sample](https://github.com/xybhust/stock-trading-backtester/blob/master/images/figure_1.png?raw=true)
+![Sample](https://raw.githubusercontent.com/xybhust/stock-trading-backtester/master/images/figure_1.png)
 
 
 Advice is greatly appreciated. 
