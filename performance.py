@@ -207,7 +207,7 @@ class Performance(object):
             axes[i+1].vlines(index, 0., item[1], color='red', 
                              label='Excess returns over %s' % item[0])
             axes[i+1].axhline(y=0., ls='dotted', color='k')
-            axes[i+1].legend(loc='bect')
+            axes[i+1].legend(loc='best')
             axes[i+1].grid(True)
         fig.subplots_adjust(hspace=0)
         fig.show()
