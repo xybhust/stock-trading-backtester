@@ -90,7 +90,7 @@ class MovingAverage(object):
         long_ = self.data_handler.get_cursor_value(ticker, 'MA-long')
         
         if (self.status == 'EMPTY') and short > long_:
-            signal = 'ENTER', {ticker: -1.}
+            signal = 'ENTER', {ticker: 1.}
             self.status = 'LONG'
             self.recent_action_cursor = self.data_handler.cursor
             return signal
