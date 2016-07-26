@@ -31,6 +31,12 @@ Assumptions
    from $150.
 
 
+Limitations
+-----------
+1. Only one strategy at a time. e.g. You can't combine pairs-trading strategy with moving average crossover strategy.
+2. Only support market order, no limit order and stop-loss order. (You need to define stop-loss actions in your strategy class.)
+
+
 Data
 ----
 The data pipeline in the backtest follows three steps:
@@ -119,7 +125,9 @@ Sample graphs
 Advice is greatly appreciated. 
 
 
-## Future improvements
-  1. Consider bilateral transaction fees
-  2. Support multiple signal at one unit of time. e.g. Close out a position and enter a opposite position immediately.
+Future improvements
+-------------------
+1. Consider bilateral transaction fees
+2. Support multiple signal at one unit of time. e.g. Close out a position and enter a opposite position immediately.
+3. Support limit order and stop-loss order. (Currently the stop-loss action is defined by the strategy class)
 
