@@ -65,38 +65,20 @@ def resample(raw_df, freq):
         transaction : price at which transaction actually occurs, 
             approximated by the open price at the next period
     """
+    ohlc = raw_df['price'].resample(freq, closed='left', label='right').ohlc().dropna()
+    ewap = raw_df['price'].resample(freq, closed='left', label='right').mean().dropna()
+    ewap.name = 'ewap'
+    qty_amt = raw_df.loc[:, ['quantity', 'amount']].resample(
+        freq, closed='left', label='right').sum().dropna()
+    vwap = qty_amt['amount'] / qty_amt['quantity']
+    vwap.name = 'vwap'
+    transaction = ohlc['open'].shift(-1).dropna()
+    transaction.name = 'transaction'
+    concat = pd.concat([ohlc, ewap, vwap, transaction, qty_amt], axis=1,
+                       join='inner')
+    concat['date'] = concat.index
 
-    new_columns=['open', 'high', 'low', 'close', 'ewap']
-        
-    for col in new_columns:
-        try:
-            raw_df[col] = raw_df['price']
-        except NameError:
-            print('\'price\' is not in the columns')
-    selected_columns = new_columns + ['quantity', 'amount']
-    method = {'open': lambda x: x[0] if len(x) != 0 else np.NaN, 
-              'high': np.max,
-              'low': np.min,
-              'close': lambda x: x[-1] if len(x) != 0 else np.NaN,
-              'ewap': np.mean, 
-              'quantity': np.sum, 
-              'amount': np.sum
-              }
- 
-    simple_df = raw_df[selected_columns].resample(freq, closed='left', 
-        label='right').apply(method).dropna()
-    
-    # volume weighted average price (vwap)
-    simple_df['vwap'] = simple_df['amount'] / simple_df['quantity']
-    # traded price is the next period's open price
-    simple_df['transaction'] = simple_df['open'].shift(-1)
-    simple_df['date'] = map(lambda x: x.date(), simple_df.index)
-    columns = ['date', 'open', 'high', 'low', 'close', 'ewap', 'vwap', 
-               'transaction', 'quantity', 'amount']
-    simple_df = simple_df.dropna().reindex(columns=columns)
-    simple_df.to_csv('sampled.csv', columns=columns,
-                              index_label='datetime')
-    return simple_df.dropna()
+    return concat.dropna()
 
 if __name__ == '__main__':
     df = clean_raw_data('stocks/600030.SH.csv')
