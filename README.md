@@ -58,7 +58,9 @@ Instructions
 ------------
 1. If you start with tick data, you need to define your own functions to preprocess the raw tick data, which should return the           resampled csv file with datetime as index. And the two MUST-HAVE columns are `transaction` and `close` as mentioned above. If you 
    start with cleaned data, go to step 2.
+
 2. Name the cleaned data after its ticker, e.g. `600030.SH.csv` and put it into the `resampled_data` directory. Remember that            different tick files might have different time index, however, the DataHandler class requires each file have exactly the same         indices. Therefore, you need to doublecheck manually to ensure the data feeding to the DataHandler class come up to standard.
+
 3. To research a new strategy, simply create your own strategy class, which MUST implemente the following two method
 ```python
 @staticmethod 
@@ -68,17 +70,14 @@ and
 ```python
 generate_signal()
 ```
-The files `buy and hold` and `simple moving average cross` are two examples. The return type of the user-defined methods should follow the patterns of the examples. All you need to do is to copy and modified it.
+   The files `buy and hold` and `simple moving average cross` are two examples. The return type of the user-defined methods should follow the patterns of the examples. All you need to do is to copy and modified it.
+   
 4. Modified the absolute path in both `strategy` and `DataHandler`, and run `backtest.py` to conduct backtest. Just run it and 
    the figures will pop up automatically.
 
 Important settings
 ------------------
-Don't forget to modify the absolute path in the DataHandler
-class as well as the strategy class.
-
-Also, the Performance class expects the `periods` as the argument, which is an int number 
-representing the number of intervals in one year. I assume:
+Also, the Performance class expects the `periods` as the argument, which is an int number representing the number of intervals in one year. I assume:
   * 52 weeks in a year
   * 250 days in a year
   * 250 * 4 hours in a year
@@ -96,12 +95,9 @@ Sample graphs
 -------------
 ![Sample](https://raw.githubusercontent.com/xybhust/stock-trading-backtester/master/images/figure_1.png)
 
-
-Advice is greatly appreciated. 
-
-
 Future improvements
 -------------------
 1. Support multiple signal at one unit of time. e.g. Close out a position and enter an opposite position immediately.
 2. Support limit order and stop-loss order. (Currently the stop-loss action is defined by the strategy class)
 
+Advice is greatly appreciated.
