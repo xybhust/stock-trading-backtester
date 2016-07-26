@@ -12,7 +12,7 @@ from position_handler import PositionHandler
 from performance import Performance
 from strategy.buy_hold import BuyHold
 from strategy.sma_cross import MovingAverage
-from strategy.test import TestStrategy
+
 
 class Backtest(object):
     """Enscapsulates the settings and components for carrying out
