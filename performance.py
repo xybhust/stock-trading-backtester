@@ -45,7 +45,7 @@ class Performance(object):
         
         self.returns = position_record['total'].pct_change()
         self.returns[0] = 0.
-        self.cumulative_returns = (1.0 + self.returns).cumprod()
+        self.cumulative_returns = (1. + self.returns).cumprod()
         
         self.benchmark_returns = dict((b, s.pct_change()) for b, s in 
             data_handler.benchmarks.items())
@@ -67,26 +67,20 @@ class Performance(object):
         
     @staticmethod
     def mean_return(returns, periods):
-        """
-        annual return.
+        """Annual return
         """
         return np.mean(returns)*periods
 
     @staticmethod        
     def volatility(returns, periods):
-        """
-        annual volatility
+        """annual volatility
         """
         return np.std(returns, ddof=1)*np.sqrt(periods)
 
     @staticmethod        
     def sharpe_ratio(returns, risk_free, periods):
-        """
-        Create the Sharpe ratio for the strategy, based on a zero
+        """Create the Sharpe ratio for the strategy, based on a zero
         benchmark.
-        
-        @Parameters:
-        returns - A pandas Series representing period percentage returns.
         """
         return (Performance.mean_return(returns, periods) - risk_free) / \
             Performance.volatility(returns, periods)
@@ -103,8 +97,6 @@ class Performance(object):
     @staticmethod       
     def sortino_ratio(returns, periods):
         """
-        @Parameter:
-        returns - Pandas series.
         """
         return Performance.mean_return(returns, periods) / \
             Performance.downside_deviation(returns, periods)
@@ -120,9 +112,11 @@ class Performance(object):
 
     @staticmethod    
     def max_drawdown(cumulative_returns):
-        """
-        maximal loss before a new peak is formed.
-        @return (through_value - peak_value) / peak_value
+        """Maximal loss before a new peak is formed.
+        
+        Returns
+        -------
+        (through_value - peak_value) / peak_value
         """
         peak_idx, low_idx = 0, 0
         max_drawdown = 0.
@@ -147,8 +141,9 @@ class Performance(object):
             
     def create_performance(self):
         """
-        @Return:
-            annualized return, downside_deviation, sharpe_ratio, sortino ratio
+        Returns
+        -------
+        tuple : (annualized return, downside_deviation, sharpe_ratio, sortino ratio)
         """
         num = len(self.returns)
         strategy_return = (self.cumulative_returns.iloc[-1] ** (1./num) - 1) * self.periods
@@ -161,13 +156,12 @@ class Performance(object):
         skewness = skew(self.returns, bias=False)
         kurt = kurtosis(self.returns, bias=False)
         
-        return (strategy_return, sigma, downside, max_down, sharpe, sortino, RaR, 
-                skewness, kurt)
+        return strategy_return, sigma, downside, max_down, sharpe, sortino, RaR, \
+            skewness, kurt
         
         
     def output_performance(self):
-        """
-        Creates a list of summary statistics for the portfolio.
+        """Creates a list of summary statistics for the portfolio.
         """
         print("Creating summary stats...")    
         strategy_return, strategy_sigma, downside, max_down, sharpe, sortino, RaR, \
@@ -195,7 +189,7 @@ class Performance(object):
             axes[0].plot(s.index,
                          s,
                          label='Benchmark: %s' % b)
-        axes[0].legend(loc='best', bbox_to_anchor=(1, 1))
+        axes[0].legend(loc='best', bbox_to_anchor=(0.75, 1.02))
         axes[0].grid(True)
 
         index = self.returns.index
@@ -205,8 +199,9 @@ class Performance(object):
             axes[i+1].axhline(y=0., ls='dotted', color='k')
             axes[i+1].legend(loc='best')
             axes[i+1].grid(True)
+            
         fig.subplots_adjust(hspace=0)
         fig.show()
-
+  
         pprint.pprint(stats)
         
