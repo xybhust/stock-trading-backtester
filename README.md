@@ -20,7 +20,7 @@ Assumptions
 1. Each order is executed with certainty.
 2. The transaction price is the open price at the next period which follows 
    the period when the signal is released.
-3. Commision fee is charged only at opening positions at a rate of 0.0015.
+3. Commision fee is charged both at opening and closing out positions at a rate of 0.0015.
 4. No transfer-out or transfer-in money.
 5. For short selling, the margin rate is 100%. For example, if you short a 
    stock at $100 for 100 shares, then the cost would be $10,000.
@@ -47,31 +47,22 @@ The data pipeline in the backtest follows three steps:
 
 Files
 -----
-The files in `tick_data` directory are the original raw data, which consists of
-transaction records at second level. You are supposed to output the new
-resampled file and put it into the resampled_data directory. However, If you 
-already have data at desired frequency (this is what resample means), say, you
-collect daily data from Yahoo finance api, then you can skip the first step 
-and put them straight into the resampled_data directory. Keep in mind that 
-`transaction` and `close` are two required columns in order to make the 
+The files in `tick_data` directory are the original raw data, which consists of transaction records at second level. You are supposed to output the new resampled file and put it into the resampled_data directory. However, If you already have data at desired frequency (this is what resample means), say, you collect daily data from Yahoo finance api, then you can skip the first step and put them straight into the resampled_data directory. Keep in mind that `transaction` and `close` are two required columns in order to make the 
 components running free of troubles.
 
-The files in resampled_data directory contains necessary market information,
-which will be read by the strategy class and the output file will be stored
-in the `strategy/data` directory.
+The files in resampled_data directory contains necessary market information, which will be read by the strategy class and the output file will be stored in the `strategy/data` directory.
 
-The files in `strategy/data` directory are files processed by a specific strategy,
-which will be read by the DataHandler class. 
+The files in `strategy/data` directory are files processed by a specific strategy, which will be read by the DataHandler class. 
 
 
 Instructions
 ------------
-First you need to define your own functions to preprocess the raw tick data,
-which should return the resampled csv file with datetime as index. And the 
-two MUST-HAVE columns are `transaction` and `close` as mentioned above.
+1. If you start from tick data, you need to define your own functions to preprocess the raw tick data,
+  which should return the resampled csv file with datetime as index. And the 
+  two MUST-HAVE columns are `transaction` and `close` as mentioned above.
 
-`resample_tick_data.py` is just my own example. Name the new file after the 
-tick file, eg. `600030.SH.csv` and put it into the `strategy/data` directory. 
+2. `resample_tick_data.py` is just my own example. Name the new file after the 
+tick file, e.g. `600030.SH.csv` and put it into the `resampled_data` directory. 
 I didn't want to integrate this functionality into the Backtest class because 
 different tick files might have different time index, however, the DataHandler 
 class requires each file have exactly the same indices. Therefore, you need to
@@ -127,7 +118,6 @@ Advice is greatly appreciated.
 
 Future improvements
 -------------------
-1. Consider bilateral transaction fees
-2. Support multiple signal at one unit of time. e.g. Close out a position and enter an opposite position immediately.
-3. Support limit order and stop-loss order. (Currently the stop-loss action is defined by the strategy class)
+1. Support multiple signal at one unit of time. e.g. Close out a position and enter an opposite position immediately.
+2. Support limit order and stop-loss order. (Currently the stop-loss action is defined by the strategy class)
 
