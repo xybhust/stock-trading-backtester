@@ -44,7 +44,6 @@ class Backtest(object):
            data_handler_cls, position_handler_cls, order_handler_cls, 
            strategy_cls, performance_cls
         ): 
-
         strategy_cls.csv_processor(tickers)
         
         self.data_handler = data_handler_cls(tickers, benchmarks)
@@ -60,7 +59,6 @@ class Backtest(object):
         self.performance_cls = performance_cls
         self.transactions = 0
 
-        
     def simulate_trading(self):
         """Executes the backtest.
         """
@@ -69,7 +67,6 @@ class Backtest(object):
  
             # update positions based on newst data
             self.position_handler.update_from_market()
-            
 
             # generate signals based on newest data
             signal = self.strategy.generate_signal()
