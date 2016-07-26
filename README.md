@@ -128,6 +128,6 @@ Advice is greatly appreciated.
 Future improvements
 -------------------
 1. Consider bilateral transaction fees
-2. Support multiple signal at one unit of time. e.g. Close out a position and enter a opposite position immediately.
+2. Support multiple signal at one unit of time. e.g. Close out a position and enter an opposite position immediately.
 3. Support limit order and stop-loss order. (Currently the stop-loss action is defined by the strategy class)
 
