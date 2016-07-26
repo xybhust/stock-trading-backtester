@@ -96,7 +96,7 @@ Important settings
 Don't forget to modify the absolute path in the DataHandler
 class as well as the strategy class.
 
-Also, the Performance class expects the periods as arguments, which is an int number 
+Also, the Performance class expects the `periods` as the argument, which is an int number 
 representing the number of intervals in one year. I assume:
   * 52 weeks in a year
   * 250 days in a year
