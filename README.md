@@ -61,19 +61,10 @@ Instructions
 
 2. Name the cleaned data after its ticker, e.g. `600030.SH.csv` and put it into the `resampled_data` directory. Remember that            different tick files might have different time index, however, the DataHandler class requires each file have exactly the same         indices. Therefore, you need to doublecheck manually to ensure the data feeding to the DataHandler class come up to standard.
 
-3. To research a new strategy, simply create your own strategy class, which MUST implemente the following two method
-```python
-@staticmethod 
-csv_processor(tickers)
-```
-   and
-```python
-generate_signal()
-```
-   The files `buy and hold` and `simple moving average cross` are two examples. The return type of the user-defined methods should follow the patterns of the examples. All you need to do is to copy and modified it.
-   
-4. Modified the absolute path in both `strategy` and `DataHandler`, and run `backtest.py` to conduct backtest. Just run it and 
-   the figures will pop up automatically.
+3. To research a new strategy, simply create your own strategy class, which MUST implemente the following two method `csv_processor(tickers)` and `generate_signal()`. The files `buy and hold` and `simple moving average cross` are two examples. The return type of the user-defined methods should follow the patterns of the examples. All you need to do is to copy and modified it.
+
+4. Modified the absolute path in both `strategy` and `DataHandler`, and run `backtest.py` to conduct backtest. Just run it and the       figures will pop up automatically.
+
 
 Important settings
 ------------------
