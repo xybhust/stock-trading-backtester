@@ -45,8 +45,8 @@ class MovingAverage(object):
                              index_col=0,
                              header=0,
                              parse_dates=True)
-            df['MA-short'] = pd.rolling_mean(df['close'], window=10)
-            df['MA-long'] = pd.rolling_mean(df['close'], window=30)
+            df['MA-short'] = df['close'].rolling(window=10).mean()
+            df['MA-long'] = df['close'].rolling(window=30).mean()
    
             df.dropna().to_csv(u'C:\\Users\\Yibing\\Documents\\Python\\back_test\\strategy\\data\\%s.csv'%t, 
                                                      index_label='datetime')
