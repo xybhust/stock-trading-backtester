@@ -33,7 +33,7 @@ Assumptions
 
 Limitations
 -----------
-1. Only one strategy at a time. e.g. You can't combine pairs-trading strategy with moving average crossover strategy.
+1. Only one strategy at a time. i.e. You can't combine pairs-trading strategy with moving average crossover strategy.
 2. Only support market order, no limit order and stop-loss order. (You need to define stop-loss actions in your strategy class.)
 
 
