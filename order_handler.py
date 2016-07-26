@@ -56,6 +56,8 @@ class OrderHandler(object):
         elif signal[0] == 'EXIT':
             for k, w in weights.items():
                 qtys[k] = w
+                price = self.data_handler.get_cursor_value(k, 'transaction')
+                qty = self.position_handler.current_position[k][0]
+                transaction_cost += abs(qty*price)*transaction_rate
                 
         return signal[0], transaction_cost, qtys
-    
