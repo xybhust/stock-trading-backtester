@@ -117,3 +117,9 @@ Sample graphs
 
 
 Advice is greatly appreciated. 
+
+
+## Future improvements
+  1. Consider bilateral transaction fees
+  2. Support multiple signal at one unit of time. e.g. Close out a position and enter a opposite position immediately.
+
