@@ -66,7 +66,7 @@ Instructions
 @staticmethod 
 csv_processor(tickers)
 ```
-and
+   and
 ```python
 generate_signal()
 ```
