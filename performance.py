@@ -197,11 +197,7 @@ class Performance(object):
                          label='Benchmark: %s' % b)
         axes[0].legend(loc='best', bbox_to_anchor=(1, 1))
         axes[0].grid(True)
-     #   plt.legend(loc='best')
 
-        
-        # plot excess return, this runs VERY SLOW, uncomment below if needed
-        # ------------------------------------------------------------------
         index = self.returns.index
         for i, item in enumerate(self.excess_returns.items()):
             axes[i+1].vlines(index, 0., item[1], color='red', 
