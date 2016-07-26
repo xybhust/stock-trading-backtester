@@ -41,14 +41,13 @@ Data
 ----
 The data pipeline in the backtest follows three steps:
   1. Define your own functions to resample the raw tick data 
-  2. Calculate necessary features required by each strategy
+  2. Calculate necessary features, which could be technical indicators required by each strategy
   3. Feed the complete data to the DataHandler and start backtest
 
 
 Files
 -----
-The files in `tick_data` directory are the original raw data, which consists of transaction records at second level. You are supposed to output the new resampled file and put it into the resampled_data directory. However, If you already have data at desired frequency (this is what resample means), say, you collect daily data from Yahoo finance api, then you can skip the first step and put them straight into the resampled_data directory. Keep in mind that `transaction` and `close` are two required columns in order to make the 
-components running free of troubles.
+The files in `tick_data` directory are the original raw data, which consists of transaction records at second level. You are supposed to generate the new resampled file and put it into the `resampled_data` directory. However, If you already have cleaned data at desired frequency (this is what resample means), say, you collect daily data from Yahoo finance api, then you can skip the first step and put them straight into the `resampled_data` directory. Keep in mind that `transaction` and `close` are two required columns in order to make the components running free of troubles.
 
 The files in resampled_data directory contains necessary market information, which will be read by the strategy class and the output file will be stored in the `strategy/data` directory.
 
@@ -57,23 +56,10 @@ The files in `strategy/data` directory are files processed by a specific strateg
 
 Instructions
 ------------
-1. If you start from tick data, you need to define your own functions to preprocess the raw tick data,
-  which should return the resampled csv file with datetime as index. And the 
-  two MUST-HAVE columns are `transaction` and `close` as mentioned above.
-
-2. `resample_tick_data.py` is just my own example. Name the new file after the 
-tick file, e.g. `600030.SH.csv` and put it into the `resampled_data` directory. 
-I didn't want to integrate this functionality into the Backtest class because 
-different tick files might have different time index, however, the DataHandler 
-class requires each file have exactly the same indices. Therefore, you need to
-doublecheck manually to ensure the data feeding to the DataHandler class come 
-up to standard.
-
-With everything ready, run the `backtest.py` to conduct backtest. Just run it 
-and the figures will pop up automatically.
-
-To research a new strategy, simply create your own strategy class, which MUST 
-implemente the following two method
+1. If you start with tick data, you need to define your own functions to preprocess the raw tick data, which should return the           resampled csv file with datetime as index. And the two MUST-HAVE columns are `transaction` and `close` as mentioned above. If you 
+   start with cleaned data, go to step 2.
+2. Name the cleaned data after its ticker, e.g. `600030.SH.csv` and put it into the `resampled_data` directory. Remember that            different tick files might have different time index, however, the DataHandler class requires each file have exactly the same         indices. Therefore, you need to doublecheck manually to ensure the data feeding to the DataHandler class come up to standard.
+3. To research a new strategy, simply create your own strategy class, which MUST implemente the following two method
 ```python
 @staticmethod 
 csv_processor(tickers)
@@ -82,11 +68,9 @@ and
 ```python
 generate_signal()
 ```
-
-The files `buy and hold` and `simple moving average cross` are two examples. 
-The return type of the user-defined methods should follow the patterns of the 
-examples. All you need to do is to copy and modified it.
-
+The files `buy and hold` and `simple moving average cross` are two examples. The return type of the user-defined methods should follow the patterns of the examples. All you need to do is to copy and modified it.
+4. Modified the absolute path in both `strategy` and `DataHandler`, and run `backtest.py` to conduct backtest. Just run it and 
+   the figures will pop up automatically.
 
 Important settings
 ------------------
